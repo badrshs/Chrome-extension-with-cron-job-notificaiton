@@ -10,18 +10,20 @@ function checkApiAndNotify() {
     fetch(API_URL)
       .then(response => response.json())
       .then(data => {
-        if (data === true) {
-          chrome.notifications.create('notification', {
+       chrome.notifications.create('notification', {
             type: 'basic',
             iconUrl: 'icon.png',
             title: 'API Notification',
             message: 'The API returned true.'
           });
-        }
       })
       .catch(error => console.error('Error fetching API:', error));
   });
 }
+
+chrome.browserAction.onClicked.addListener(() => {
+  checkApiAndNotify();
+});
 
 chrome.storage.sync.get('interval', items => {
   const interval = items.interval || 1;

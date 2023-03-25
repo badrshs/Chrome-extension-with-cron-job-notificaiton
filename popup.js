@@ -2,6 +2,13 @@ function loadSettings() {
   chrome.storage.sync.get(['apiUrl', 'interval'], items => {
     document.getElementById('api-url').value = items.apiUrl || '';
     document.getElementById('interval').value = items.interval || 1;
+
+    chrome.alarms.get('apiCheck', alarm => {
+      if (alarm) {
+        const remainingSeconds = Math.round((alarm.scheduledTime - Date.now()) / 1000);
+        document.getElementById('remaining-time').textContent = `Next check in ${remainingSeconds} seconds`;
+      }
+    });
   });
 }
 
