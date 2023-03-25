@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "API Cron Job Notifier",
+  "version": "1.0",
+  "description": "Notifies user when API returns true.",
+  "permissions": [
+    "notifications",
+    "alarms",
+    "storage",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "icons": {
+    "48": "icon.png"
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  }
+}
