@@ -7,7 +7,9 @@ function loadSettings() {
 
 document.addEventListener('DOMContentLoaded', loadSettings);
 
-document.getElementById('save-btn').addEventListener('click', () => {
+document.getElementById('save-btn').addEventListener('click', event => {
+  event.preventDefault();
+
   const apiUrl = document.getElementById('api-url').value;
   const interval = parseInt(document.getElementById('interval').value) || 1;
 
@@ -18,6 +20,15 @@ document.getElementById('save-btn').addEventListener('click', () => {
       });
     });
 
-    alert('Settings saved.');
+    Swal.fire({
+      icon: 'success',
+      title: 'Settings saved',
+      showConfirmButton: false,
+	  width: '200px', // Adjust the width of the SweetAlert2 popup,
+      timer: 1500,
+	  customClass: {
+        title: 'smaller-font' // Add a custom class to the title
+      }
+    });
   });
 });
